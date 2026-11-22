@@ -1,0 +1,242 @@
+{
+ "Prop_Bear_01": {
+  "hi": 2130,
+  "size": [
+   0.75,
+   0.787,
+   1.0
+  ],
+  "orig_longest_blender_units": 0.999,
+  "lo": 1000
+ },
+ "Prop_BookGroup_01": {
+  "hi": 3000,
+  "size": [
+   0.705,
+   0.7,
+   1.0
+  ],
+  "orig_longest_blender_units": 0.999,
+  "lo": 1200
+ },
+ "Prop_Book_01": {
+  "hi": 1001,
+  "size": [
+   0.826,
+   0.717,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 999
+ },
+ "Prop_Book_02": {
+  "hi": 2059,
+  "size": [
+   0.83,
+   0.57,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 999
+ },
+ "Prop_Book_03": {
+  "hi": 2127,
+  "size": [
+   0.86,
+   0.578,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 999
+ },
+ "Prop_Book_04": {
+  "hi": 2200,
+  "size": [
+   0.796,
+   0.526,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Brush_01": {
+  "hi": 1825,
+  "size": [
+   0.469,
+   0.274,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Brush_02": {
+  "hi": 1112,
+  "size": [
+   0.147,
+   0.148,
+   1.0
+  ],
+  "orig_longest_blender_units": 0.999,
+  "lo": 1000
+ },
+ "Prop_Brush_03": {
+  "hi": 1052,
+  "size": [
+   0.108,
+   0.108,
+   1.0
+  ],
+  "orig_longest_blender_units": 0.98,
+  "lo": 1000
+ },
+ "Prop_Canyon_01": {
+  "hi": 1996,
+  "size": [
+   0.169,
+   0.169,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Canyon_02": {
+  "hi": 986,
+  "size": [
+   0.213,
+   0.21,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 986
+ },
+ "Prop_Chair_01": {
+  "hi": 1030,
+  "size": [
+   0.667,
+   0.568,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Palette_01": {
+  "hi": 1025,
+  "size": [
+   0.971,
+   0.127,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 999
+ },
+ "Prop_Paper_01": {
+  "hi": 2199,
+  "size": [
+   1.0,
+   0.738,
+   0.192
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 998
+ },
+ "Prop_Paper_02": {
+  "hi": 1526,
+  "size": [
+   1.0,
+   0.958,
+   0.862
+  ],
+  "orig_longest_blender_units": 1.001,
+  "lo": 1000
+ },
+ "Prop_Paper_03": {
+  "hi": 3000,
+  "size": [
+   0.7,
+   0.676,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.021,
+  "lo": 1200
+ },
+ "Prop_Pen_01": {
+  "hi": 1115,
+  "size": [
+   0.121,
+   0.137,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 998
+ },
+ "Prop_Penceil_01": {
+  "hi": 952,
+  "size": [
+   0.323,
+   0.323,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 952
+ },
+ "Prop_Penceil_02": {
+  "hi": 895,
+  "size": [
+   0.148,
+   0.148,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 895
+ },
+ "Prop_PencilSharpener_01": {
+  "hi": 1064,
+  "size": [
+   0.808,
+   0.388,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Pigment_01": {
+  "hi": 2144,
+  "size": [
+   0.395,
+   0.269,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Pigment_02": {
+  "hi": 2154,
+  "size": [
+   0.392,
+   0.297,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1000
+ },
+ "Prop_Pigment_03": {
+  "hi": 1980,
+  "size": [
+   0.4,
+   0.277,
+   1.0
+  ],
+  "orig_longest_blender_units": 0.999,
+  "lo": 998
+ },
+ "Prop_Pinao_01": {
+  "hi": 1989,
+  "size": [
+   1.0,
+   0.547,
+   0.852
+  ],
+  "orig_longest_blender_units": 0.998,
+  "lo": 999
+ }
+}

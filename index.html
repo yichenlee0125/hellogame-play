@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#1e3a40" />
+  <title>HelloGame</title>
+  <script>
+    if (window.name !== 'hello-landscape-game' && matchMedia('(pointer: coarse)').matches) {
+      document.documentElement.classList.add('landscape-host');
+    }
+  </script>
+  <style>
+    html.landscape-host, html.landscape-host body { margin: 0; overflow: hidden; background: #162438; }
+    .landscape-host body > :not(#landscape-game) { display: none !important; }
+    #landscape-game { display: block; position: fixed; left: 0; top: 0; border: 0;
+      width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; transform-origin: 0 0; }
+    @media (orientation: portrait) {
+      #landscape-game { width: 100vh; height: 100vw; width: 100dvh; height: 100dvw;
+        transform: translateX(100vw) rotate(90deg); transform: translateX(100dvw) rotate(90deg); }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
+  <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./settings-v90.css" />
+  <link rel="stylesheet" href="./bundle.css" />
+</head>
+<body>
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
+  <canvas id="game"></canvas>
+  <div id="ui">
+    <div id="door-flash"></div>
+    <!-- 门外首页：点击开始 → 推门进入寝室 -->
+    <section id="scr-door" class="screen scene-img show">
+      <div class="img-wrap" id="door-wrap"><img src="./img/door.jpg" alt="" draggable="false" />
+        <div class="door-reveal"><div class="reveal-dorm"></div><div class="reveal-light"></div></div>
+        <div class="door-leaf"><span class="door-number">315</span></div>
+      </div>
+      <div class="home-shade"></div>
+      <div class="home-panel">
+        <h1 class="logo"><img src="./img/logo.png" alt="HelloGames!" draggable="false" /></h1>
+        <p class="slogan">保护内心那份热爱。</p>
+        <button class="hbtn gold" id="btn-start"><span class="ico ico-svg"><svg viewBox="0 0 24 24"><path d="M8.200 4.900c-.9-.6-2.200 0-2.200 1.200v11.800c0 1.100 1.300 1.800 2.200 1.200l9.200-5.900c.8-.5.8-1.700 0-2.300z" fill="currentColor" stroke="currentColor" stroke-width="2.400" stroke-linejoin="round"/></svg></span>推门，开始冒险</button>
+        <div class="hrow">
+          <button class="hbtn line quit" id="btn-quit"><span class="ico ico-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.200" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.500v8"/><path d="M6.800 6.800a8 8 0 1 0 10.400 0"/></svg></span>退出</button>
+          <button class="hbtn line dim" disabled><span class="ico ico-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.200" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-1.600-2.600-3-4-5-4a4 4 0 0 0 0 8c2 0 3.400-1.400 5-4zm0 0c1.600 2.600 3 4 5 4a4 4 0 0 0 0-8c-2 0-3.400 1.400-5 4z"/></svg></span>多人 · 敬请期待</button>
+        </div>
+      </div>
+    </section>
+    <!-- 退出确认 -->
+    <section id="scr-quit" class="screen modal">
+      <div class="card">
+        <div class="card-ico">?</div>
+        <h2>要走了吗？</h2>
+        <p>门外还有一份热爱在等你呢</p>
+        <button class="btn primary" id="quit-stay">再玩一会儿</button>
+        <button class="btn" id="quit-ok">退出游戏</button>
+      </div>
+    </section>
+    <!-- 寝室（2D 固定观察位，轻微看向） -->
+    <section id="scr-dorm" class="screen scene-img">
+      <div class="img-wrap parallax" id="dorm-wrap"><img src="./img/dorm.jpg" alt="" draggable="false" /><img class="dorm-shadow" src="./img/dorm-shadow.png" alt="" draggable="false" />
+        <div class="desk-spill"></div>
+        <button class="laptop" aria-label="笔记本电脑"><img src="./img/dorm-props/laptop.png" alt="" draggable="false" /><span class="screen-glow"></span></button>
+        <div class="props"></div>
+      </div>
+      <div class="suck-glow"></div>
+      <div class="dorm-bubble" id="dorm-bubble"></div>
+      <div class="dorm-hint" id="dorm-hint">寝室里空无一人……桌上的电脑亮着</div>
+    </section>
+    <!-- 章节选择 -->
+    <section id="scr-chapters" class="screen">
+      <div class="ch-bg"></div>
+      <div class="ch-head">
+        <h2>选择章节</h2>
+        <p>人生的每个阶段，都有一个巨大的"假想敌"。</p>
+      </div>
+      <button class="lo-side prev" id="ch-prev" aria-label="上一章"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
+      <button class="lo-side next" id="ch-next" aria-label="下一章"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
+      <div class="ch-cards" id="ch-cards"></div>
+      <ol class="ch-dots" id="ch-dots" aria-label="章节"></ol>
+      <div class="ch-foot">
+        <button class="hbtn line" id="btn-ch-back" aria-label="回寝室"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
+        <button class="hbtn line" id="btn-memoir">回忆录</button>
+        <button class="hbtn line" id="btn-ch-t0">重玩新手关</button>
+      </div>
+    </section>
+    <!-- 通关后：三扇门 / 小摊 -->
+    <section id="scr-post" class="screen"><div class="ch-bg"></div></section>
+    <!-- 回忆录（日记本） -->
+    <section id="scr-memoir" class="screen">
+      <div class="mm-desk">
+        <div class="mm-book">
+          <div class="mm-rings" aria-hidden="true"></div>
+          <div class="mm-page">
+            <header class="mm-head"><h2>回忆录</h2><p>走过的路、遇到的人。太久以前的事，会渐渐模糊。</p></header>
+            <div class="mm-body" id="mm-body"></div>
+          </div>
+        </div>
+        <button class="lo-btn" id="btn-mm-back" aria-label="合上"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
+      </div>
+    </section>
+    <!-- 出发前：主控 / 搭档 / 羁绊 -->
+    <section id="scr-loadout" class="screen">
+      <button class="lo-side prev" id="lo-prev" aria-label="上一步"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
+      <button class="lo-side next" id="lo-next" aria-label="下一步" hidden><img src="./img/ui/arrow-go.svg" alt="" draggable="false"></button>
+      <div class="lo-wrap">
+        <header class="lo-head">
+          <button class="lo-back" id="lo-back" aria-label="返回上一步"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
+          <div class="lo-ttl"><h2 id="lo-title">选主控</h2><p id="lo-sub"></p></div>
+          <span class="lo-coin"><svg class="coin-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.500" fill="#f5b81c"/><circle cx="12" cy="12" r="7.600" fill="#ffd95e"/><path d="M12 7.200v9.600M9.600 9.400c.4-.9 1.400-1.400 2.400-1.400 1.300 0 2.300.7 2.300 1.700 0 2.200-4.700 1.200-4.700 3.600 0 1 1 1.700 2.400 1.700 1 0 2-.5 2.400-1.400" fill="none" stroke="#c8860a" stroke-width="1.500" stroke-linecap="round"/></svg><b id="lo-coins">0</b></span>
+    </header>
+    <main class="lo-stage"><div class="lo-pane" id="lo-pane"></div></main>
+        <footer class="lo-foot">
+          <ol class="lo-steps" id="lo-steps" aria-label="页码"><li></li><li></li><li></li></ol>
+          <div id="lo-preview" class="lo-preview"></div>
+          
+          <button class="lo-btn ghost" id="lo-cheat">测试：解锁全部搭档</button>
+          <button class="lo-btn go" id="lo-go" hidden>出发</button>
+        </footer>
+      </div>
+    </section>
+    <!-- 设置 -->
+    <section id="scr-settings" class="screen settings" aria-labelledby="settings-title">
+      <header class="settings-header">
+        <button type="button" id="btn-settings-close" aria-label="返回上一页"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
+        <h1 id="settings-title">设置</h1>
+      </header>
+      <div class="settings-layout">
+        <div class="settings-tabs" role="tablist" aria-label="设置分类" aria-orientation="vertical">
+          <button type="button" id="settings-tab-display" role="tab" aria-selected="true" aria-controls="settings-display" tabindex="0"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="3.5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 17v4m-4 0h8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>画面设置</span></button>
+          <button type="button" id="settings-tab-audio" role="tab" aria-selected="false" aria-controls="settings-audio" tabindex="-1"><svg viewBox="-1 -2 28 28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 9h4l5-5a1.5 1.5 0 0 1 2.5 1v14a1.5 1.5 0 0 1-2.5 1l-5-5H3a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Z"/><path d="M18 8a6 6 0 0 1 0 8m3-12a11 11 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>声音设置</span></button>
+          <button type="button" id="settings-tab-controls" role="tab" aria-selected="false" aria-controls="settings-controls" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 1a5 5 0 0 1 1.5 9.8V18h-3v-7.2A5 5 0 0 1 12 1Z"/><path d="M8 14c-4 .6-6 2-6 4.5 0 2.8 5 4 10 4s10-1.2 10-4c0-2.5-2-3.9-6-4.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span>操作设置</span></button>
+          <button type="button" id="settings-tab-account" role="tab" aria-selected="false" aria-controls="settings-account" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle fill="currentColor" cx="12" cy="6" r="5"/><path fill="currentColor" d="M2 20a10 8 0 0 1 20 0q0 2-2 2H4q-2 0-2-2Z"/></svg><span>账号设置</span></button>
+          <button type="button" id="settings-tab-other" role="tab" aria-selected="false" aria-controls="settings-other" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 2h6q1 0 1 1v6q0 1-1 1H3q-1 0-1-1V3q0-1 1-1Zm12 0h6q1 0 1 1v6q0 1-1 1h-6q-1 0-1-1V3q0-1 1-1ZM3 14h6q1 0 1 1v6q0 1-1 1H3q-1 0-1-1v-6q0-1 1-1Zm12 0h6q1 0 1 1v6q0 1-1 1h-6q-1 0-1-1v-6q0-1 1-1Z"/></svg><span>其他设置</span></button>
+        </div>
+        <form id="settings-form" class="settings-panel">
+          <section id="settings-display" role="tabpanel" aria-labelledby="settings-tab-display">
+            <h2>画面设置</h2>
+            <div class="settings-row">
+              <span>画质等级</span>
+              <div class="settings-choices" role="group" aria-label="画质等级">
+                <label><input type="radio" name="quality" value="auto" /><span>自动</span></label>
+                <label><input type="radio" name="quality" value="low" /><span>流畅</span></label>
+                <label><input type="radio" name="quality" value="high" /><span>精致</span></label>
+              </div>
+            </div>
+            <div class="settings-row">
+              <span>渲染分辨率</span>
+              <div class="settings-choices" role="group" aria-label="渲染分辨率">
+                <label><input type="radio" name="resolution" value="low" /><span>低</span></label>
+                <label><input type="radio" name="resolution" value="mid" /><span>中</span></label>
+                <label><input type="radio" name="resolution" value="high" /><span>高</span></label>
+              </div>
+            </div>
+            <div class="settings-row">
+              <span>帧率上限</span>
+              <div class="settings-choices" role="group" aria-label="帧率上限">
+                <label><input type="radio" name="fps" value="30" /><span>30</span></label>
+                <label><input type="radio" name="fps" value="60" /><span>60</span></label>
+                <label><input type="radio" name="fps" value="120" /><span>120</span></label>
+              </div>
+            </div>
+            <div class="settings-row"><span>减少镜头抖动</span><label class="settings-switch"><input name="reduceMotion" aria-label="减少镜头抖动" type="checkbox" /><span></span></label></div>
+          </section>
+          <section id="settings-audio" role="tabpanel" aria-labelledby="settings-tab-audio" hidden>
+            <h2>声音设置</h2>
+            <label class="settings-row" for="set-volume">
+              <span>总音量</span>
+              <span class="settings-range">
+                <input id="set-volume" name="volume" type="range" min="0" max="100" value="50" />
+                <span class="settings-value" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="settings-row" for="set-music">
+              <span>背景音乐</span>
+              <span class="settings-range">
+                <input id="set-music" name="music" type="range" min="0" max="100" value="80" />
+                <span class="settings-value" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="settings-row" for="set-effects">
+              <span>音效音量</span>
+              <span class="settings-range">
+                <input id="set-effects" name="effects" type="range" min="0" max="100" value="50" />
+                <span class="settings-value" aria-hidden="true"></span>
+              </span>
+            </label>
+            <label class="settings-row" for="set-voice">
+              <span>语音音量</span>
+              <span class="settings-range">
+                <input id="set-voice" name="voice" type="range" min="0" max="100" value="70" disabled />
+                <span class="settings-value">暂不可用</span>
+              </span>
+            </label>
+          </section>
+          <section id="settings-controls" role="tabpanel" aria-labelledby="settings-tab-controls" hidden>
+            <h2>操作设置</h2>
+            <label class="settings-row" for="set-sensitivity">
+              <span>镜头灵敏度</span>
+              <span class="settings-range">
+                <input id="set-sensitivity" name="sensitivity" type="range" min="0" max="100" value="50" />
+                <span class="settings-value" aria-hidden="true"></span>
+              </span>
+            </label>
+            <div class="settings-row">
+              <span>瞄准方式</span>
+              <div class="settings-choices" role="group" aria-label="瞄准方式">
+                <label><input type="radio" name="aim" value="hold" /><span>按住瞄准</span></label>
+                <label><input type="radio" name="aim" value="tap" /><span>点按瞄准</span></label>
+              </div>
+            </div>
+            <div class="settings-keyboard">
+              <div class="settings-key-head">
+                <h3>键位设置</h3>
+                <label class="settings-switch">按住蹲下<input name="crouchHold" type="checkbox" aria-label="按住蹲下" /><span></span></label>
+              </div>
+              <dl>
+                <div><dt>移动</dt><dd>WASD / 方向键</dd></div>
+                <div><dt>跳跃</dt><dd>空格</dd></div>
+                <div><dt>奔跑</dt><dd>Shift</dd></div>
+                <div><dt>蹲下</dt><dd>Ctrl（左 / 右）</dd></div>
+              </dl>
+              <details>
+                <summary>手机触控布局</summary>
+                <div class="settings-edit-layout">
+                  <button type="button" data-edit="explore">探索</button>
+                  <button type="button" data-edit="ranged">远程</button>
+                  <button type="button" data-edit="melee">近战</button>
+                  <button type="button" id="btn-layout-reset">重置布局</button>
+                </div>
+              </details>
+            </div>
+          </section>
+          <section id="settings-account" role="tabpanel" aria-labelledby="settings-tab-account" hidden>
+            <h2>账号设置</h2>
+            <div class="settings-info"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle fill="currentColor" cx="12" cy="6" r="5"/><path fill="currentColor" d="M2 20a10 8 0 0 1 20 0q0 2-2 2H4q-2 0-2-2Z"/></svg><div><h3>访客模式</h3><p>无需登录即可游玩</p></div></div>
+            <div class="settings-info"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4 2h13l5 5v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm3 0v7h10V2h-2v5h-3V2H7Zm0 11v6h10v-6H7Zm2 2h6v2H9v-2Z"/></svg><div><h3>本机存档</h3><p>进度保存在当前浏览器</p></div><div class="settings-save-actions"><span class="settings-badge">仅本机</span><button type="button" id="btn-clear-save">清除存档</button></div></div>
+          </section>
+          <section id="settings-other" role="tabpanel" aria-labelledby="settings-tab-other" hidden>
+            <h2>其他设置</h2>
+            <div class="settings-row">
+              <span>文字大小</span>
+              <div class="settings-choices" role="group" aria-label="文字大小">
+                <label><input type="radio" name="text" value="1" /><span>小</span></label>
+                <label><input type="radio" name="text" value="2" /><span>标准</span></label>
+                <label><input type="radio" name="text" value="3" /><span>大</span></label>
+              </div>
+            </div>
+            <div class="settings-row"><span>减少闪烁</span><label class="settings-switch"><input name="flash" aria-label="减少闪烁" type="checkbox" /><span></span></label></div>
+            <div class="settings-row"><span>自动拍照</span><label class="settings-switch"><input name="photo" aria-label="自动拍照" type="checkbox" disabled /><span>暂不可用</span></label></div>
+            <details class="settings-keyboard"><summary>重看基础操作提示</summary><p>电脑用 WASD 移动、鼠标转向、1/2/3 换武器。手机用左摇杆移动、右侧拖动转向。</p><label class="settings-switch">显示关内提示<input type="checkbox" name="hints" aria-label="显示关内提示" /><span></span></label></details>
+          </section>
+          <footer id="settings-actions" class="settings-actions">
+            <button type="button" id="settings-defaults">恢复默认</button>
+            <button type="submit">应用设置</button>
+          </footer>
+          <p id="settings-status" role="status" class="settings-status"></p>
+        </form>
+      </div>
+    </section>
+    <!-- 暂停 -->
+    <section id="scr-pause" class="screen modal">
+      <!-- 作者 2026-11-19：声音与设置在屏幕右上角（与游戏内背包/暂停钮同位置），奶油风厚实小按钮 -->
+      <div class="pause-tr">
+        <button class="ico-btn" id="btn-mute" aria-label="声音：开" aria-pressed="false">
+          <svg class="i-on" viewBox="0 0 28 28"><path d="M5.500 11.200h3.400l5.100-4.100c.7-.5 1.600 0 1.600.9v12c0 .9-.9 1.400-1.600.9l-5.100-4.100H5.500c-.8 0-1.400-.6-1.400-1.400v-2.800c0-.8.6-1.400 1.400-1.400z" fill="currentColor" stroke="currentColor" stroke-width="1.600" stroke-linejoin="round"/><path d="M19.300 10.400c1.700 1.900 1.700 5.300 0 7.200" fill="none" stroke="#e9923a" stroke-width="2.400" stroke-linecap="round"/><path d="M22.400 7.300c3.200 3.700 3.200 9.700 0 13.400" fill="none" stroke="#e9923a" stroke-width="2.400" stroke-linecap="round"/></svg>
+          <svg class="i-off" viewBox="0 0 28 28"><path d="M5.500 11.200h3.400l5.100-4.100c.7-.5 1.600 0 1.600.9v12c0 .9-.9 1.400-1.600.9l-5.100-4.100H5.500c-.8 0-1.400-.6-1.400-1.400v-2.800c0-.8.6-1.400 1.400-1.400z" fill="currentColor" stroke="currentColor" stroke-width="1.600" stroke-linejoin="round"/><path d="M19.500 10.800l5.400 6.400M24.900 10.800l-5.400 6.400" fill="none" stroke="#e0533f" stroke-width="2.600" stroke-linecap="round"/></svg>
+        </button>
+        <button class="ico-btn" id="btn-pause-settings" aria-label="设置">
+          <svg viewBox="0 0 28 28"><defs><mask id="gearhole"><rect width="28" height="28" fill="#fff"/><circle cx="14" cy="14" r="3.600" fill="#000"/></mask></defs><g mask="url(#gearhole)" fill="currentColor"><circle cx="14" cy="14" r="7.600"/><rect x="11.800" y="3" width="4.400" height="6" rx="1.600"/><rect x="11.800" y="19" width="4.400" height="6" rx="1.600"/><rect x="3" y="11.800" width="6" height="4.400" rx="1.600"/><rect x="19" y="11.800" width="6" height="4.400" rx="1.600"/><rect x="11.800" y="3" width="4.400" height="6" rx="1.600" transform="rotate(45 14 14)"/><rect x="11.800" y="3" width="4.400" height="6" rx="1.600" transform="rotate(-45 14 14)"/><rect x="11.800" y="19" width="4.400" height="6" rx="1.600" transform="rotate(45 14 14)"/><rect x="11.800" y="19" width="4.400" height="6" rx="1.600" transform="rotate(-45 14 14)"/></g></svg>
+        </button>
+      </div>
+      <div class="card">
+        <div class="card-ico calm">Ⅱ</div>
+        <h2>暂停</h2>
+        <button class="btn primary" id="btn-resume">继续</button>
+        <button class="btn" id="btn-study" hidden>场景调光</button>
+        <div class="btn-grid">
+          <button class="btn" id="btn-exit">退出</button>
+          <button class="btn" id="btn-restart">重新开始本关</button>
+        </div>
+      </div>
+    </section>
+    <aside id="study-editor" hidden aria-label="场景调光">
+      <header><strong>场景调光</strong><button id="study-close" aria-label="返回暂停菜单">返回</button></header>
+      <div class="study-actions"><button id="study-compare" aria-pressed="false">按住看原图</button><button id="study-gray" aria-pressed="false">按住看灰度</button></div>
+      <div id="study-fields"></div>
+      <footer><button id="study-reset">恢复正式预设</button><button id="study-save">保存到浏览器</button><button id="study-export">导出预设</button></footer>
+      <output id="study-status" role="status"></output>
+    </aside>
+    <!-- 死亡 -->
+    <section id="scr-dead" class="screen modal">
+      <div class="card">
+        <div class="card-ico bad">✕</div>
+        <h2 id="fail-title">糟糕！玩具被老爸发现了！</h2>
+        <button class="btn primary" id="btn-retry">再试一次</button>
+      </div>
+    </section>
+    <!-- 通关 -->
+    <section id="scr-clear" class="screen modal">
+      <div class="card">
+        <div class="stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></div>
+        <h2 id="clear-title">通关</h2>
+        <p id="clear-desc"></p>
+        <div class="clear-meta" id="clear-meta"></div>
+        <div class="reward" id="clear-reward">● +10 金币 · 恢复一格生命</div>
+        <p class="small" id="clear-note">原型版本：三门与配装选择将在后续阶段接入。</p>
+        <button class="btn primary" id="btn-chapters">选择章节</button>
+        <button class="btn" id="btn-again">再玩一次（试试别的出口）</button>
+      </div>
+    </section>
+    <!-- 竖屏提示 -->
+
+    <!-- 加载界面（作者 2026-11-19）：开场预加载全部图片；进关时搭建关卡并预热着色器，完成后才揭开 -->
+    <div id="loading" class="loading" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="ld-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="ld-box">
+        <div class="ld-logo ld-logo-anim" id="ld-logo" aria-hidden="true"><img src="./img/logo-anim/logo-poster.png" alt="" draggable="false" width="640" height="156" /></div>
+      </div>
+      <p class="ld-tip" id="ld-tip"></p>
+      <div class="ld-foot">
+        <div class="ld-bar"><i id="ld-fill"></i></div>
+        <div class="ld-row"><span class="ld-title" id="ld-title">正在进入屏幕世界</span><b id="ld-pct">0%</b></div>
+        <button class="ld-start" id="ld-start" type="button" tabindex="-1">出发吧！</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./bundle.js"></script>
+  <script>
+    if (document.documentElement.classList.contains('landscape-host')) {
+      const frame = document.createElement('iframe');
+      frame.id = 'landscape-game';
+      frame.name = 'hello-landscape-game';
+      frame.title = 'HelloGame';
+      frame.allow = 'fullscreen; autoplay';
+      frame.allowFullscreen = true;
+      const gameURL = new URL(location.href);
+      gameURL.searchParams.set('landscapeFrame', '1');
+      frame.src = gameURL.href;
+      document.body.replaceChildren(frame);
+    } else {
+      if (window.name === 'hello-landscape-game' && typeof screen.orientation?.lock === 'function') {
+        addEventListener('click', async () => {
+          try {
+            if (!parent.document.fullscreenElement) await parent.document.documentElement.requestFullscreen();
+            await screen.orientation.lock('landscape');
+          } catch { /* The framed landscape viewport remains usable. */ }
+        }, { once: true, capture: true });
+      }
+    }
+  </script>
+</body>
+</html>
