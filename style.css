@@ -660,7 +660,7 @@ body:not(.touch) .ammo { left: auto; right: 32px; top: auto; bottom: 26px; trans
 .tb-aim svg { width: calc(var(--d) * .62) !important; height: calc(var(--d) * .62) !important; }
 .tb-reload svg, .tb-swap svg { width: calc(var(--d) * .56) !important; height: calc(var(--d) * .56) !important; }
 .tb-skill svg, .tb-medkit svg { width: calc(var(--d) * .42) !important; height: calc(var(--d) * .42) !important; }
-.tb-jump svg { width: calc(var(--d) * .4) !important; height: calc(var(--d) * .4) !important; }
+.touch-layer .tb-jump svg { width: 58% !important; height: 58% !important; }
 .tb-crouch svg, .tb-run svg, .tb-grab svg { width: calc(var(--d) * .5) !important; height: calc(var(--d) * .5) !important; }
 body.touch .hud-tl { transform: scale(.78); transform-origin: 0 0; }
 body.touch .escort .etime { font-size: 17px; font-weight: 500; }
@@ -1869,7 +1869,7 @@ body.reduce-motion .laptop img { animation: none; }
 .hud { padding: 0; }
 .hud .hud-tl { position: absolute; left: var(--hud-in); top: var(--hud-top); display: flex; flex-direction: row; align-items: flex-start; gap: 0; background: none; box-shadow: none; padding: 0; border: 0; }
 .avatar { position: relative; width: 62px; height: 62px; flex: none; z-index: 2; }
-.avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; border: 3px solid #4aa8ff; box-shadow: 0 0 0 2px rgba(10, 20, 40, .55), 0 4px 10px rgba(0, 0, 0, .4); background: #243456; display: block; }
+.avatar svg { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; border: 3px solid #4aa8ff; box-shadow: 0 0 0 2px rgba(10, 20, 40, .55), 0 4px 10px rgba(0, 0, 0, .4); background: #243456; display: block; }
 .vitals { margin: 8px 0 0 -10px; padding-left: 14px; display: flex; flex-direction: column; gap: 5px; }
 .vitals .stam-row { background: rgba(18, 22, 40, .72); border-radius: 0 10px 10px 4px; padding: 3px 10px 3px 14px; gap: 6px; }
 .vitals .stam { width: clamp(110px, 20vw, 190px); height: 12px; background: rgba(0, 0, 0, .35); border-radius: 4px; transform: skewX(-12deg); }
@@ -2127,7 +2127,7 @@ body[data-scan-count]:not(.reduce-motion) #game { animation: scan-pulse var(--sc
   background: conic-gradient(from -35deg, #efeddc, #626b74 19%, #222c39 38%, #666c74 61%, #c6d8dc 78%, #fff4cd);
   box-shadow: 0 0 0 2px #17212a, 1px 3px 6px #111820a6;
 }
-.hud .avatar img { box-sizing:border-box; border:2px solid #23303c; box-shadow:none; }
+.hud .avatar svg { box-sizing:border-box; border:2px solid #23303c; box-shadow:none; }
 .hud .vitals { align-self:center; margin-top:0; gap:3px; }
 .hud .vitals :is(.hearts-row,.stam-row,.cart-row) {
   background:linear-gradient(90deg,#172031e6,#182030b8 72%,#17203100);
@@ -2241,3 +2241,5 @@ body.touch .hud:has(.cart-row[data-on="1"]) .quest { width:max-content; }
 }
 
 .hud .vitals .bolt { width: 1.45em; height: 1.45em; color: white; filter: none; flex: none; }
+
+.hud .avatar svg { display: block; overflow: hidden; }
