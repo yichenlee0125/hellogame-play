@@ -661,8 +661,9 @@ body:not(.touch) .ammo { left: auto; right: 32px; top: auto; bottom: 26px; trans
 .tb-reload svg, .tb-swap svg { width: calc(var(--d) * .56) !important; height: calc(var(--d) * .56) !important; }
 .tb-skill svg, .tb-medkit svg { width: calc(var(--d) * .42) !important; height: calc(var(--d) * .42) !important; }
 .touch-layer .tb-jump .jump-art { position: absolute; top: 12%; left: 28%; width: 44%; height: 58%; object-fit: contain; pointer-events: none; }
-.touch-layer .tb-jump small { bottom: 9%; font: 600 calc(var(--d) * .15)/1 system-ui, sans-serif; }
-.touch-layer:not(.editing) .tb-jump:not(.on) { background: rgba(13, 13, 15, .57) !important; box-shadow: inset 0 0 0 1.2px #f3efeaad !important; }
+.touch-layer .tb-crouch .crouch-art { position: absolute; top: 17%; left: 26%; width: 47%; height: 54%; object-fit: contain; pointer-events: none; }
+.touch-layer :is(.tb-jump,.tb-crouch) small { bottom: 9%; font: 600 calc(var(--d) * .15)/1 system-ui, sans-serif; }
+.touch-layer:not(.editing) :is(.tb-jump,.tb-crouch):not(.on):not(.lock) { background: rgba(13, 13, 15, .57) !important; box-shadow: inset 0 0 0 1.2px #f3efeaad !important; }
 .tb-crouch svg, .tb-run svg, .tb-grab svg { width: calc(var(--d) * .5) !important; height: calc(var(--d) * .5) !important; }
 body.touch .hud-tl { transform: scale(.78); transform-origin: 0 0; }
 body.touch .escort .etime { font-size: 17px; font-weight: 500; }
