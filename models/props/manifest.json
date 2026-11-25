@@ -238,5 +238,55 @@
   ],
   "orig_longest_blender_units": 0.998,
   "lo": 999
+ },
+ "Prop_BrushPot_01": {
+  "hi": 1887,
+  "size": [
+   0.626,
+   0.626,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1887
+ },
+ "Prop_Lamp_01": {
+  "hi": 1053,
+  "size": [
+   0.661,
+   0.91,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1053
+ },
+ "Prop_RailroadCar_01": {
+  "hi": 2084,
+  "size": [
+   0.419,
+   1.0,
+   0.73
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 2084
+ },
+ "Prop_Tellurion": {
+  "hi": 1110,
+  "size": [
+   0.72,
+   0.599,
+   1.0
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 1110
+ },
+ "Prop_Locomotive_01": {
+  "hi": 9521,
+  "size": [
+   0.347,
+   1.0,
+   0.623
+  ],
+  "orig_longest_blender_units": 1.0,
+  "lo": 9521
  }
 }
