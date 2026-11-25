@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-BmWxGz_H.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CeI7Qh9U.css">
+  <script type="module" crossorigin src="./assets/index-DLUXoZ4o.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BSaN4HCy.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -45,7 +45,7 @@
       <div class="card">
         <div class="card-ico">?</div>
         <h2>要走了吗？</h2>
-        <p>门外还有一份热爱在等你呢</p>
+        <p>我还想再冒险一会儿呢。</p>
         <button class="btn primary" id="quit-stay">再玩一会儿</button>
         <button class="btn" id="quit-ok">退出游戏</button>
       </div>
@@ -59,14 +59,14 @@
       </div>
       <div class="suck-glow"></div>
       <div class="dorm-bubble" id="dorm-bubble"></div>
-      <div class="dorm-hint" id="dorm-hint">寝室里空无一人……桌上的电脑亮着</div>
+      <div class="dorm-hint" id="dorm-hint">咦，寝室里没人。桌上的电脑还亮着，我去看看。</div>
     </section>
     <!-- 章节选择 -->
     <section id="scr-chapters" class="screen">
       <div class="ch-bg"></div>
       <div class="ch-head">
         <h2>选择章节</h2>
-        <p>人生的每个阶段，都有一个巨大的"假想敌"。</p>
+        <p>我长大一点，就会遇见一个新的大对手。</p>
       </div>
       <button class="lo-side prev" id="ch-prev" aria-label="上一章"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
       <button class="lo-side next" id="ch-next" aria-label="下一章"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
@@ -86,7 +86,7 @@
         <div class="mm-book">
           <div class="mm-rings" aria-hidden="true"></div>
           <div class="mm-page">
-            <header class="mm-head"><h2>回忆录</h2><p>走过的路、遇到的人。太久以前的事，会渐渐模糊。</p></header>
+            <header class="mm-head"><h2>回忆录</h2><p>我走过的路、遇到的人，都记在这里。太久以前的事，我会慢慢忘掉。</p></header>
             <div class="mm-body" id="mm-body"></div>
           </div>
         </div>
@@ -263,15 +263,15 @@
         <div class="c1e-brief__mission">
           <header>
             <h2 id="c1e-brief-title" tabindex="-1" autofocus>护送宝贝号</h2>
-            <p id="c1e-brief-intro">把宝贝号悄悄送回卧室！</p>
+            <p id="c1e-brief-intro">嘘，宝贝号，我们溜回卧室！</p>
           </header>
           <ol class="c1e-brief__steps">
-            <li><strong>跟紧小车</strong><span>红色小车要你贴近才走。陪它经过中继点。</span></li>
-            <li><strong>清路搭桥</strong><span>清开路障，推倒立书搭成桥，让小车过沟。</span></li>
-            <li><strong>被爸爸看见就停</strong><span>可以观察和瞄准，别走动、跳跃或开火。</span></li>
-            <li><strong>拿钥匙，溜回卧室</strong><span>到第二个闹钟就回尺桥拿钥匙。按坡脚的金色开关，再和小车一起过门。</span></li>
+            <li><strong>宝贝号，跟上！</strong><span>我一靠近它就走，离远了它会退。</span></li>
+            <li><strong>大书，变座桥！</strong><span>推倒立书，宝贝号就能过沟。</span></li>
+            <li><strong>老爸看见我了？装木头人！</strong><span>只转镜头、瞄准，别走、跳、打。</span></li>
+            <li><strong>回卧室，还差把钥匙！</strong><span>车到第 2 个闹钟，我回尺桥打怪拿钥匙。按坡脚开关，躲小怪，和车一起过门。</span></li>
           </ol>
-          <button type="button" id="btn-c1e-ready" class="c1e-brief__ready">了解了<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" id="btn-c1e-ready" class="hbtn gold c1e-brief__ready">了解了<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
     </dialog>
@@ -318,7 +318,7 @@
     <section id="scr-dead" class="screen modal">
       <div class="card">
         <div class="card-ico bad">✕</div>
-        <h2 id="fail-title">糟糕！玩具被老爸发现了！</h2>
+        <h2 id="fail-title">哎呀，我的心都掉光了！</h2>
         <button class="btn primary" id="btn-retry">再试一次</button>
       </div>
     </section>
@@ -329,8 +329,8 @@
         <h2 id="clear-title">通关</h2>
         <p id="clear-desc"></p>
         <div class="clear-meta" id="clear-meta"></div>
-        <div class="reward" id="clear-reward">● +10 金币 · 恢复一格生命</div>
-        <p class="small" id="clear-note">原型版本：三门与配装选择将在后续阶段接入。</p>
+        <div class="reward" id="clear-reward">我拿到了 10 金币，还补了一颗心。</div>
+        <p class="small" id="clear-note">我回去看看，再挑下一段路。</p>
         <button class="btn primary" id="btn-chapters">选择章节</button>
         <button class="btn" id="btn-again">再玩一次（试试别的出口）</button>
       </div>
@@ -349,7 +349,7 @@
           <div class="ld-bar"><i id="ld-fill"></i></div>
           <img id="ld-push" class="ld-push" alt="" aria-hidden="true" decoding="async" draggable="false" hidden />
         </div>
-        <div class="ld-row"><span class="ld-title" id="ld-title">正在进入屏幕世界</span><b id="ld-pct">0%</b></div>
+        <div class="ld-row"><span class="ld-title" id="ld-title">我准备一下……</span><b id="ld-pct">0%</b></div>
         <button class="ld-start" id="ld-start" type="button" tabindex="-1">出发吧！</button>
       </div>
     </div>
