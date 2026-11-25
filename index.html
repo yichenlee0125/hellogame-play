@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-BbQ3P3JP.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BSaN4HCy.css">
+  <script type="module" crossorigin src="./assets/index-D9nQpm2U.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C_NwFGnw.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -257,7 +257,7 @@
       <div class="c1e-brief__spread">
         <figure class="c1e-brief__art">
           <div class="c1e-brief__issue" aria-hidden="true"><span>玩具房探险手册</span><b>第 01 期</b></div>
-          <img src="./img/c1e-escort-guide.webp" alt="小小冒险家护送红色玩具车、推倒立书搭桥、在台灯照过来时停下。" width="1536" height="1024" loading="lazy" draggable="false" />
+          <div class="c1e-brief__picture"><img src="./img/c1e-escort-guide.webp" alt="小小冒险家护送红色玩具车，用玩具剑和盾牌击退订书机怪物，又在台灯照过来时躲藏。" width="1536" height="1024" loading="lazy" draggable="false" /></div>
           <figcaption>童年篇 · 台灯下的玩具房</figcaption>
         </figure>
         <div class="c1e-brief__mission">
@@ -267,9 +267,8 @@
           </header>
           <ol class="c1e-brief__steps">
             <li><strong>宝贝号，跟上！</strong><span>我一靠近它就走，离远了它会退。</span></li>
-            <li><strong>大书，变座桥！</strong><span>推倒立书，宝贝号就能过沟。</span></li>
+            <li><strong>小怪来捣乱？我来护住宝贝号！</strong><span>我用剑和盾击退小怪。</span></li>
             <li><strong>老爸看见我了？装木头人！</strong><span>只转镜头、瞄准，别走、跳、打。</span></li>
-            <li><strong>回卧室，还差把钥匙！</strong><span>车到第 2 个闹钟，我回尺桥打怪拿钥匙。按坡脚开关，躲小怪，和车一起过门。</span></li>
           </ol>
           <button type="button" id="btn-c1e-ready" class="hbtn gold c1e-brief__ready">了解了<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
@@ -305,6 +304,7 @@
         <label>场景对象<select id="layout-objects"></select></label>
         <div class="layout-actions"><button data-tool="translate">移动 W</button><button data-tool="rotate">旋转 E</button><button data-tool="scale">缩放 R</button><button id="layout-focus">聚焦 F</button></div>
         <div id="layout-axes"></div>
+        <div id="layout-patrol" hidden></div>
         <div class="layout-actions"><button id="layout-duplicate">复制</button><button id="layout-delete">删除</button><button id="layout-undo">撤销</button></div>
         <label>添加对象<select id="layout-templates"></select></label><button id="layout-add">添加到场景</button>
       </div>
