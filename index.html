@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-Do8uvSbz.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B8--qEfi.css">
+  <script type="module" crossorigin src="./assets/index-BFsgkYYW.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-FdvbNBBA.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -253,6 +253,28 @@
         </form>
       </div>
     </section>
+    <dialog id="scr-c1e-brief" class="c1e-brief" aria-labelledby="c1e-brief-title" aria-describedby="c1e-brief-intro">
+      <div class="c1e-brief__spread">
+        <figure class="c1e-brief__art">
+          <div class="c1e-brief__issue" aria-hidden="true"><span>玩具房探险手册</span><b>第 01 期</b></div>
+          <img src="./img/c1e-escort-guide.webp" alt="小小冒险家护送红色玩具车、推倒立书搭桥、在台灯照过来时停下。" width="1536" height="1024" loading="lazy" draggable="false" />
+          <figcaption>童年篇 · 台灯下的玩具房</figcaption>
+        </figure>
+        <div class="c1e-brief__mission">
+          <header>
+            <h2 id="c1e-brief-title" tabindex="-1" autofocus>护送宝贝号</h2>
+            <p id="c1e-brief-intro">把宝贝号悄悄送回卧室！</p>
+          </header>
+          <ol class="c1e-brief__steps">
+            <li><strong>跟紧小车</strong><span>红色小车要你贴近才走。陪它经过中继点。</span></li>
+            <li><strong>清路搭桥</strong><span>清开路障，推倒立书搭成桥，让小车过沟。</span></li>
+            <li><strong>被爸爸看见就停</strong><span>可以观察和瞄准，别走动、跳跃或开火。</span></li>
+            <li><strong>打开卧室门</strong><span>按金色开关，躲开闻声赶来的小怪。门开后，和小车一起进去。</span></li>
+          </ol>
+          <button type="button" id="btn-c1e-ready" class="c1e-brief__ready">了解了<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </dialog>
     <!-- 暂停 -->
     <section id="scr-pause" class="screen modal">
       <!-- 作者 2026-11-19：声音与设置在屏幕右上角（与游戏内背包/暂停钮同位置），奶油风厚实小按钮 -->
@@ -323,7 +345,10 @@
       </div>
       <p class="ld-tip" id="ld-tip"></p>
       <div class="ld-foot">
-        <div class="ld-bar"><i id="ld-fill"></i></div>
+        <div class="ld-track" id="ld-track">
+          <div class="ld-bar"><i id="ld-fill"></i></div>
+          <img id="ld-push" class="ld-push" alt="" aria-hidden="true" decoding="async" draggable="false" hidden />
+        </div>
         <div class="ld-row"><span class="ld-title" id="ld-title">正在进入屏幕世界</span><b id="ld-pct">0%</b></div>
         <button class="ld-start" id="ld-start" type="button" tabindex="-1">出发吧！</button>
       </div>
