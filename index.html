@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-D7KkZor3.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CTJD9VFH.css">
+  <script type="module" crossorigin src="./assets/index-CqFKxiF5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-t8S6qUvQ.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -104,8 +104,8 @@
     </section>
     <!-- 出发前：主控 / 搭档 / 羁绊 -->
     <section id="scr-loadout" class="screen">
-      <button class="lo-side prev" id="lo-prev" aria-label="上一步"><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
-      <button class="lo-side next" id="lo-next" aria-label="下一步" hidden><img src="./img/ui/arrow-go.svg" alt="" draggable="false"></button>
+      <button type="button" class="lo-side prev" id="lo-prev" aria-label="上一页搭档" aria-controls="lo-pane" hidden><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
+      <button type="button" class="lo-side next" id="lo-next" aria-label="下一页搭档" aria-controls="lo-pane" hidden><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
       <div class="lo-wrap">
         <header class="lo-head">
           <button class="lo-back" id="lo-back" aria-label="返回上一步"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
@@ -118,7 +118,7 @@
           <div id="lo-preview" class="lo-preview"></div>
           
           <button class="lo-btn ghost" id="lo-cheat">测试：解锁全部搭档</button>
-          <button class="lo-btn go" id="lo-go" hidden>出发</button>
+          <button type="button" class="lo-btn go" id="lo-go" hidden>下一步</button>
         </footer>
       </div>
     </section>
