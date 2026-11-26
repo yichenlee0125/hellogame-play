@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-CNfhwjXA.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DJ51uk4u.css">
+  <script type="module" crossorigin src="./assets/index-hTzDODpa.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B5pEVsxq.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -206,13 +206,12 @@
                 <label><input type="radio" name="aim" value="tap" /><span>点按瞄准</span></label>
               </div>
             </div>
+            <div class="settings-row"><span>按住蹲下</span><label class="settings-switch"><input name="crouchHold" type="checkbox" aria-label="按住蹲下" /><span></span></label></div>
             <div class="settings-keyboard">
-              <label class="settings-switch">按住蹲下<input name="crouchHold" type="checkbox" aria-label="按住蹲下" /><span></span></label>
               <details id="settings-keybindings" hidden>
                 <summary>键鼠改键</summary>
                 <div id="settings-keybind-list"></div>
                 <button type="button" id="btn-keybind-reset">恢复默认键位</button>
-                <p id="settings-keybind-status" role="status" aria-live="polite"></p>
               </details>
               <details id="settings-touch-layout" hidden>
                 <summary>手机触控布局</summary>
@@ -245,10 +244,13 @@
             <details class="settings-keyboard"><summary>基础操作提示</summary><p id="settings-operations-help"></p></details>
           </section>
           <footer id="settings-actions" class="settings-actions">
+            <div class="settings-feedback">
+              <p id="settings-keybind-status" role="status"></p>
+              <p id="settings-status" role="status"></p>
+            </div>
             <button type="button" id="settings-defaults">恢复默认</button>
             <button type="submit">应用设置</button>
           </footer>
-          <p id="settings-status" role="status" class="settings-status"></p>
         </form>
       </div>
     </section>
