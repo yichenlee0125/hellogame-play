@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-hTzDODpa.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B5pEVsxq.css">
+  <script type="module" crossorigin src="./assets/index-CqC30gzP.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CmLnvwPn.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -59,9 +59,13 @@
         <div class="props"></div>
       </div>
       <svg class="suck-filter" width="0" height="0" aria-hidden="true">
-        <filter id="suck-warp" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency=".008 .012" numOctaves="1" seed="7" result="warp" />
-          <feDisplacementMap id="suck-displacement" in="SourceGraphic" in2="warp" scale="0" xChannelSelector="R" yChannelSelector="G" />
+        <filter id="suck-warp" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+          <feImage id="suck-field" width="100%" height="100%" preserveAspectRatio="none" result="field" />
+          <feDisplacementMap id="suck-displacement" in="SourceGraphic" in2="field" scale="0" xChannelSelector="R" yChannelSelector="G" result="room" />
+          <feOffset id="suck-fringe" in="room" dx="0" result="shift" />
+          <feColorMatrix in="shift" values=".65 0 0 0 0  0 0 0 0 0  0 0 .45 0 0  0 0 0 1 0" result="violet" />
+          <feColorMatrix in="room" values=".35 0 0 0 0  0 1 0 0 0  0 0 .55 0 0  0 0 0 1 0" result="cyan" />
+          <feComposite in="violet" in2="cyan" operator="arithmetic" k2="1" k3="1" />
         </filter>
       </svg>
       <div class="suck-glow" aria-hidden="true">
