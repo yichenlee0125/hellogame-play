@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-CqFKxiF5.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-t8S6qUvQ.css">
+  <script type="module" crossorigin src="./assets/index-CdnATZ5e.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D1Hu07wy.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -105,7 +105,7 @@
     <!-- 出发前：主控 / 搭档 / 羁绊 -->
     <section id="scr-loadout" class="screen">
       <button type="button" class="lo-side prev" id="lo-prev" aria-label="上一页搭档" aria-controls="lo-pane" hidden><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
-      <button type="button" class="lo-side next" id="lo-next" aria-label="下一页搭档" aria-controls="lo-pane" hidden><img src="./img/ui/triangle.png" alt="" draggable="false"></button>
+      <button type="button" class="lo-side next" id="lo-next" aria-label="下一页搭档" aria-controls="lo-pane" hidden><img src="./img/ui/triangle.png" alt="" draggable="false"><span class="lo-depart-text menu-title-text">出发！</span></button>
       <div class="lo-wrap">
         <header class="lo-head">
           <button class="lo-back" id="lo-back" aria-label="返回上一步"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#game-return"/></svg></button>
@@ -118,7 +118,6 @@
           <div id="lo-preview" class="lo-preview"></div>
           
           <button class="lo-btn ghost" id="lo-cheat">测试：解锁全部搭档</button>
-          <button type="button" class="lo-btn go" id="lo-go" hidden>下一步</button>
         </footer>
       </div>
     </section>
@@ -271,7 +270,7 @@
         </figure>
         <div class="c1e-brief__mission">
           <header>
-            <h2 id="c1e-brief-title" tabindex="-1" autofocus>护送宝贝号</h2>
+            <h2 id="c1e-brief-title" class="menu-title-text" tabindex="-1" autofocus>护送宝贝号</h2>
             <p id="c1e-brief-intro">嘘，宝贝号，我们溜回卧室！</p>
           </header>
           <ol class="c1e-brief__steps">
@@ -279,7 +278,7 @@
             <li><strong>小心路上的捣蛋鬼，他们可不想让你玩这些！</strong><span>想办法打败他们，也别忘了那个大家伙</span></li>
             <li><strong>被老爸发现就惨了！</strong><span>还记得123木头人吗？对，只要不动就能逃过一劫！</span></li>
           </ol>
-          <button type="button" id="btn-c1e-ready" class="hbtn gold c1e-brief__ready">了解了<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" id="btn-c1e-ready" class="hbtn gold c1e-brief__ready"><span>了解了</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
     </dialog>
