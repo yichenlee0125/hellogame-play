@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-Bsy9sIEl.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Dn6V9yMn.css">
+  <script type="module" crossorigin src="./assets/index-B77GyHGe.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dw1KMiwj.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -304,21 +304,36 @@
     </section>
     <aside id="study-editor" hidden aria-label="场景编辑">
       <header><strong>场景编辑</strong><button id="study-close" aria-label="返回暂停菜单">返回</button></header>
-      <nav id="editor-tools" aria-label="编辑工具"><button id="editor-light" aria-pressed="true">灯光与相机</button><button id="editor-layout" aria-pressed="false">场景摆放</button><button id="editor-collisions" type="button" aria-pressed="false">显示碰撞</button></nav>
+      <nav id="editor-tools" aria-label="编辑工具">
+        <button id="editor-light" aria-pressed="true">灯光与相机</button>
+        <button id="editor-post" aria-pressed="false">后期处理</button>
+        <button id="editor-layout" aria-pressed="false">场景摆放</button>
+      </nav>
       <p id="editor-collision-legend" hidden>青色实体 · 紫色触发区 · 金色选中</p>
       <div id="layout-fields" hidden>
         <label>场景对象<select id="layout-objects"></select></label>
+        <details id="layout-material" hidden>
+          <summary>实例材质</summary>
+          <div id="layout-material-fields"></div>
+        </details>
         <div class="layout-actions"><button data-tool="translate">移动 W</button><button data-tool="rotate">旋转 E</button><button data-tool="scale">缩放 R</button><button id="layout-focus">聚焦 F</button></div>
         <div id="layout-axes"></div>
-        <button type="button" id="layout-import">导入布局</button><input type="file" id="layout-file" accept=".json,application/json" hidden>
         <div id="layout-patrol" hidden></div>
         <div class="layout-actions"><button id="layout-duplicate">复制</button><button id="layout-delete">删除</button><button id="layout-undo">撤销</button></div>
         <label>添加对象<select id="layout-templates"></select></label><button id="layout-add">添加到场景</button>
       </div>
-      <div class="study-actions"><button id="study-compare" aria-pressed="false">按住看原图</button><button id="study-gray" aria-pressed="false">按住看灰度</button></div>
+      <div class="study-actions" id="editor-preview"><button id="study-compare" aria-pressed="false">按住看默认灯光</button><button id="study-gray" aria-pressed="false">按住看灰度</button></div>
       <div id="study-fields"></div>
+      <div id="study-post-fields" hidden></div>
       <div id="editor-navigation"><span>按住右键环视 · WASD 飞行 · Q/E 升降</span><button id="editor-return-camera">回到玩家镜头</button></div>
-      <footer><button id="study-reset">恢复正式预设</button><button id="study-save">保存到浏览器</button><button id="study-export">导出预设</button></footer>
+      <footer>
+        <button id="study-save">保存</button>
+        <button id="study-import">导入场景</button>
+        <button id="study-export">导出场景</button>
+        <button id="study-reset">恢复正式预设</button>
+        <button id="editor-collisions" type="button" aria-pressed="false">显示碰撞</button>
+        <input type="file" id="study-file" accept=".json,application/json" hidden>
+      </footer>
       <output id="study-status" role="status"></output>
     </aside>
     <!-- 死亡 -->
