@@ -10,13 +10,13 @@
       document.documentElement.classList.add('landscape-host');
     }
   </script>
-  <style>html.landscape-host,html.landscape-host body{background:#162438;margin:0;overflow:hidden}.landscape-host body>:not(#landscape-game){display:none!important}#landscape-game{width:100vw;height:100vh;transform-origin:0 0;border:0;width:100dvw;height:100dvh;display:block;position:fixed;top:0;left:0}@media (orientation:portrait){#landscape-game{width:100vh;height:100vw;width:100dvh;height:100dvw;transform:translate(100dvw)rotate(90deg)}}</style>
+  <style>html.landscape-host{--device-safe-top:env(safe-area-inset-top);--device-safe-right:env(safe-area-inset-right);--device-safe-bottom:env(safe-area-inset-bottom);--device-safe-left:env(safe-area-inset-left)}html.landscape-host,html.landscape-host body{background:#162438;margin:0;overflow:hidden}.landscape-host body>:not(#landscape-game){display:none!important}#landscape-game{width:100vw;height:100vh;transform-origin:0 0;border:0;width:100dvw;height:100dvh;display:block;position:fixed;top:0;left:0}@media (orientation:portrait){#landscape-game{width:100vh;height:100vw;width:100dvh;height:100dvw;transform:translate(100dvw)rotate(90deg)}}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&display=swap" />
   <link rel="stylesheet" href="./fonts/mkwtyt/result.css" />
-  <script type="module" crossorigin src="./assets/index-CdT8C4zw.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BHFgwRnB.css">
+  <script type="module" crossorigin src="./assets/index-B4z3hNjK.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CP4tBfhC.css">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><path id="game-return" fill="currentColor" d="M10 5 2 12l8 7v-4c7 0 10 2 10 5 5-7 0-12-10-12z"/></defs></svg>
@@ -389,6 +389,22 @@
       frame.src = gameURL.href;
       document.body.replaceChildren(frame);
     } else {
+      if (window.name === 'hello-landscape-game' && parent !== window) {
+        const updateInsets = () => {
+          // The portrait host rotates the whole game viewport clockwise.
+          const portrait = parent.matchMedia('(orientation: portrait)').matches;
+          const host = parent.getComputedStyle(parent.document.documentElement);
+          const sides = ['top', 'right', 'bottom', 'left'];
+          sides.forEach((side, index) => {
+            const hostSide = sides[(index + (portrait ? 1 : 0)) % 4];
+            document.documentElement.style.setProperty('--host-safe-' + side, host.getPropertyValue('--device-safe-' + hostSide).trim() || '0px');
+          });
+          dispatchEvent(new Event('game-safe-area-change'));
+        };
+        updateInsets();
+        parent.addEventListener('resize', updateInsets);
+        addEventListener('pagehide', () => parent.removeEventListener('resize', updateInsets), { once: true });
+      }
       if (window.name === 'hello-landscape-game' && typeof screen.orientation?.lock === 'function') {
         addEventListener('click', async () => {
           try {
